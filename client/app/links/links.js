@@ -19,7 +19,12 @@ angular.module('MP.links', ['chart.js'])
   $scope.labels =["Openness", "Conscientiousness", "Extraversion", "Agreeableness", "Emotional range"];
 
   $scope.data = [[]];
-
+  $scope.colours = [{
+    fillColor: 'rgba(47, 132, 71, 0.8)',
+    strokeColor: 'rgba(47, 132, 71, 0.8)',
+    highlightFill: 'rgba(47, 132, 71, 0.8)',
+    highlightStroke: 'rgba(47, 132, 71, 0.8)'
+  }];
   $scope.logout = function (){
     // TODO: the code below seems like a hack, try to implement this in a better way
     var signInUrl = location.protocol + '//' + "localhost"  + 
@@ -29,8 +34,11 @@ angular.module('MP.links', ['chart.js'])
 
   $scope.getYouTubeData = function (){
 
-    var watData = Wat.retrieveWatsonData();
+    var myData = Wat.retrieveWatsonData();
+    var watData = myData[1];
+    var pureData = myData[0];
     console.log('watData : ',watData);
+    console.log('pureData : ',pureData);
     var big5 = watData.allTraits[2];
     var maxPercent = 0;
     var saveId;
@@ -39,16 +47,20 @@ angular.module('MP.links', ['chart.js'])
 
     for (var i = 0; i < big5.length; i++) {
       $scope.data[0].push(Number(Number(big5[i][1]).toFixed(2))*10);
-      console.log('$scope.data[0]: ', $scope.data[0])
       if (big5[i][1] > maxPercent){
           maxPercent = big5[i][1];
           saveId = i;
       }
     }
+    var needs = pureData.tree.children[1].children[0];
+    for (var i = 0; i < needs.children.length; i++){
+      if (needs.children[i].percentage > .5) $scope.likes.push(needs.children[i].id);
+      if (needs.children[i].percentage < .2) $scope.dislikes.push(needs.children[i].id);
+    }
     var strongTrait = big5[saveId][0];
     $scope.descPara = watData.primaryTraits[strongTrait].descParagraf;
-    $scope.likes = watData.primaryTraits[strongTrait].likes;
-    $scope.dislikes = watData.primaryTraits[strongTrait].dislikes;
+    // $scope.likes = [watData.primaryTraits[strongTrait].likes];
+    // $scope.dislikes = watData.primaryTraits[strongTrait].dislikes;
     $scope.links = watData.primaryTraits[strongTrait].links[0];
     var query = {query:queries[strongTrait], numResults:3};
     YouTube.getYouTubeData(query)

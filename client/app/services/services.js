@@ -42,6 +42,7 @@ angular.module('MP.services', [])
       method: 'GET',
       url:'api/wat/watsonTest'
     }).then((resp) => {
+      console.log('resp in getWatsonDataTest:', resp);
         watData.data = resp.data;
         return resp.data;
     })
@@ -133,8 +134,8 @@ angular.module('MP.services', [])
 
   var twitToWatson = function (userTimeline, screen_name) {
     // console.log('I am in twitToWatson: ',userTimeline);
-    return Wat.getWatsonData({data: userTimeline, screen_name: screen_name})
-    // return Wat.getWatsonDataTest()
+    // return Wat.getWatsonData({data: userTimeline, screen_name: screen_name})
+    return Wat.getWatsonDataTest()
     .then(function (watData) {
       console.log('resp in twitToWatson:', watData)
       return watData;

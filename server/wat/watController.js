@@ -5,7 +5,7 @@ module.exports = {
   getWatsonData: function (req, res, next) {
     return Wat.callWat(req.body.data, req.body.screen_name)
       .then(function (watResponse) {
-        console.log('watResponse in watController: ',watResponse)
+        // console.log('watResponse in watController: ',watResponse)
         // res.send(watResponse);
         return watResponse;
       })
