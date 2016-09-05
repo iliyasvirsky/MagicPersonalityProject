@@ -5,8 +5,8 @@ var Link    = require('./linkModel.js'),
 
 module.exports = {
   findUrl: function (req, res, next, code) {
-    var findLink = Q.nbind(Link.findOne, Link);
-    findLink({code: code})
+    // var findLink = Q.nbind(Link.findOne, Link);
+    Link.findByCode(code)
       .then(function (link) {
         if (link) {
           req.navLink = link;
@@ -15,19 +15,19 @@ module.exports = {
           next(new Error('Link not added yet'));
         }
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
 
   allLinks: function (req, res, next) {
-  var findAll = Q.nbind(Link.find, Link);
-
-  findAll({})
+  // var findAll = Q.nbind(Link.find, Link);
+  console.log('getting links...')
+  Link.all()
     .then(function (links) {
       res.json(links);
     })
-    .fail(function (error) {
+    .catch(function (error) {
       next(error);
     });
   },
@@ -42,7 +42,7 @@ module.exports = {
     var createLink = Q.nbind(Link.create, Link);
     var findLink = Q.nbind(Link.findOne, Link);
 
-    findLink({url: url})
+    Link.findByUrl(url)
       .then(function (match) {
         if (match) {
           res.send(match);
@@ -58,7 +58,7 @@ module.exports = {
             base_url: req.headers.origin,
             title: title
           };
-          return createLink(newLink);
+          return Link.create(newLink);
         }
       })
       .then(function (createdLink) {
@@ -66,21 +66,21 @@ module.exports = {
           res.json(createdLink);
         }
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
 
   navToLink: function (req, res, next) {
     var link = req.navLink;
-    link.visits++;
-    link.save(function (err, savedLink) {
-      if (err) {
-        next(err);
-      } else {
-        res.redirect(savedLink.url);
-      }
-    });
+    console.log('link: ',link);
+    Link.save(link._id)
+      .then(function (savedLink) {
+        res.redirect(link.url);
+    })
+      .catch(function (error) {
+        next(error);
+      });
   }
 
 };

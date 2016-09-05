@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html ng-app='shortly'>
+<html ng-app='MP'>
   <head>
     <meta charset="utf-8" />
     <title>Magic Personality Insight</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
-  <body>
+  <body class= 'container'>
     <h1>Magic Personality Insight</h1>
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ng-view></div>
-
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
-
+<!--     <script src="lib/ng-youtube-embed/src/ng-youtube-embed.js"></script> -->
+    <script src="lib/chart.js/dist/Chart.js"></script>
+    <script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
     <script src="app/auth/auth.js"></script>
     <script src="app/links/links.js"></script>
+    <script src="lib/three.min.js"></script>
+    <script src="lib/stats.min.js"></script>
+    <script src="app/auth/loadingPage.js"></script>
+    <script src="app/playground/watson.js"></script>
     <script src="app/services/services.js"></script>
     <script src="app/app.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>

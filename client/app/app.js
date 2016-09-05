@@ -2,19 +2,31 @@ angular.module('MP', [
   'MP.services',
   'MP.links',
   'MP.auth',
+  'MP.loadingPage',
+  'MP.watson',
   'ngRoute'
 ])
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
-    .when('/signin', {
+    .when('/', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
-    .when('/signup', {
-      templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController'
+
+    .when('/loggingin', {
+      templateUrl: 'app/auth/loadingPage.html',
+      controller: 'loadingPageController'
     })
-    // Your code here
+    
+    .when('/links', {
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController'
+    })
+
+    .when('/watson', {
+      templateUrl: 'app/playground/index.html',
+      controller: 'watController'
+    })
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls

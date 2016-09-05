@@ -9,22 +9,11 @@ angular.module('MP.auth', [])
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('com.shortly', token);
-        $location.path('/links');
+        window.location = `https://api.twitter.com/oauth/authenticate?oauth_token=${token}`
       })
       .catch(function (error) {
         console.error(error);
       });
   };
 
-  $scope.signup = function () {
-    Auth.signup($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.shortly', token);
-        $location.path('/links');
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
 });

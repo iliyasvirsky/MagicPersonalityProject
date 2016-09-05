@@ -146,3 +146,318 @@ input[type=url]:focus {
   clear: both;
 }
 
+.twitter {
+  background-color: #1bb2e9;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 3px 3px 0px;
+  color: #f4f4f4;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  width: 250px;
+  position: absolute;
+  left: 43%;
+}
+
+* { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*:after, *:before {
+    box-sizing: border-box;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+.bird {
+  display: block;
+  position: relative;
+  margin: 2% auto;
+  width: 450px;
+  height: 400px;
+}
+.bird:hover > span {
+  transform: scale3d(1.1,1.1,1);
+  cursor: pointer;
+}
+.bird > span,
+.bird > span:before,
+.bird > span span {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: absolute;
+}
+.bird > span {
+  background: #2daae1;
+}
+.bird > span:before {
+  content:'';
+  background: white;
+}
+
+.bird .body {
+  width: 390px;
+  height: 390px;
+}
+.bird .body:before,
+.body .body-slice {
+  width: 285px;
+  height: 285px;
+  left: -42px;
+  top: 75px;
+}
+
+.bird .feather-bottom {
+  left: 126px;
+  top: 190px;
+}
+.bird .feather-bottom:before,
+.feather-bottom .feather-bottom-slice {
+  left: -56px;
+  top: -46px;
+}
+
+.bird .feather-middle {
+  left: 104px;
+  top: 142px;
+}
+.bird .feather-middle:before,
+.feather-middle .feather-middle-slice {
+  left: -44px;
+  top: -62px;
+}
+
+.bird .feather-top {
+  top: 95px;
+  left: 105px;
+}
+.bird .feather-top:before,
+.feather-top .feather-top-slice {
+  width: 390px;
+  height: 390px;
+  top: -283px;
+  left: -35px;
+}
+
+.bird .beak-bottom {
+  width: 130px;
+  height: 130px;
+  top: 62px;
+  left: 296px;
+}
+.bird .beak-bottom:before,
+.beak-bottom .beak-bottom-slice {
+  width: 235px;
+  height: 235px;
+  top: -136px;
+  left: -37px;
+}
+
+.bird .beak-top {
+  width: 130px;
+  height: 130px;
+  top: 39px;
+  left: 287px;
+}
+.bird .beak-top:before,
+.beak-top .beak-top-slice {
+  width: 235px;
+  height: 235px;
+  top: -132px;
+  left: -55px;
+}
+
+.bird .bird-head {
+  width: 135px;
+  height: 135px;
+  top: 118px;
+  left: 253px;
+}
+.bird .bird-head:before {
+  left: -270px;
+  top: -110px;
+}
+
+
+
+.bird > span {
+  transform: scale3d(0,0,0);
+  transition: transform .4s cubic-bezier(0,.85,.75, 1.275);
+}
+.bird > span:before {
+  opacity: 0;
+  transition: opacity .1s;
+}
+.bird .counterClock,
+.bird .clockWise {
+  border-style: solid;
+  border-width: 1px;
+}
+.bird .counterClock {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: white;
+}
+.bird .clockWise {
+  border-top-color: transparent;
+  border-right-color: white;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+.bird .counterClock:before,
+.bird .clockWise:before {
+  content: '';
+  border-radius: 50%;
+  display: block;
+  background-color: white;
+  position: absolute;
+  transform-origin: 50% 50%;
+}
+
+/*
+Dot Adjustments
+-----------------------------------------
+*/
+.body .body-slice:before,
+.feather-top .feather-top-slice:before {
+  height: 8px;
+  width: 4px;
+  bottom: 32px;
+  right: 41px;
+  transform: rotate(40deg);
+}
+.feather-top .feather-top-slice:before {
+  bottom: 68px;
+}
+.feather-bottom .feather-bottom-slice:before,
+.feather-middle .feather-middle-slice:before {
+  height: 6px;
+  width: 3px;
+  bottom: 18px;
+  right: 17px;
+  transform: rotate(43deg);
+}
+.beak-bottom .beak-bottom-slice:before,
+.beak-top .beak-top-slice:before {
+  height: 6px;
+  width: 3px;
+  bottom: 31px;
+  right: 32px;
+  transform: rotate(43deg);
+}
+/*
+spring adjustment
+-----------------------------------------
+*/
+
+/*
+counterClock
+-----------------------------------------
+*/
+.bird .counterClock {
+  transition: .5s transform ease-in-out .5s,
+              .1s border-left-color ease .6s,
+              .1s border-top-color ease .75s,
+              .3s border-width ease-in 1s,
+              .2s opacity ease 1s,
+              .1s border-right-color 1s,
+              .1s border-bottom-color 1s;
+  transform: rotate(57deg);
+  opacity: .6;
+}
+.feather-bottom-slice.counterClock {
+
+}
+.feather-middle-slice.counterClock {
+  transform: rotate(70deg);
+}
+.feather-top-slice.counterClock {
+  transform: rotate(180deg);
+}
+.bird .counterClock:before {
+  transition: .1s opacity 1s;
+}
+
+/*
+ clockWise
+-----------------------------------------
+*/
+.bird .clockWise {
+  transition: .5s transform ease-in-out .5s,
+              .1s border-top-color ease .6s,
+              .1s border-left-color ease .75s,
+              .3s border-width ease-in 1s,
+              .2s opacity ease 1s,
+              .1s border-bottom-color 1s,
+              .1s border-right-color 1s;
+  transform: rotate(5deg);
+  opacity: .6;
+}
+.bird .clockWise:before {
+  transition: .1s opacity 1s;
+}
+
+/* Animate Triggers
+______________________________________*/
+.is-animate.springIn {
+  transform: scale3d(1,1,1);
+}
+
+.is-animate .counterClock,
+.is-animate .clockWise {
+  border-left-color: white;
+  border-top-color: white;
+  border-right-color: white;
+  border-bottom-color: white;
+  opacity: 1;
+}
+.is-animate.body .counterClock {
+  transform: rotate(-170deg);
+}
+.is-animate .counterClock {
+  transform: rotate(-40deg);
+}
+.is-animate .clockWise {
+  transform: rotate(105deg);
+}
+.is-animate .body-slice {
+  border-width: 142px;
+}
+.is-animate .feather-bottom-slice,
+.is-animate .feather-middle-slice {
+  border-width: 70px;
+}
+.is-animate .feather-top-slice {
+  border-width: 190px;
+}
+.is-animate .beak-bottom-slice,
+.is-animate .beak-top-slice {
+  border-width: 117px;
+}
+.is-animate.springIn:before {
+  opacity: 1;
+  transition-delay: 2s;
+}
+.is-animate.bird-head.springIn:before {
+  opacity: 1;
+  transition-duration: .3s;
+  transition-delay: .1s;
+}
+.is-animate .counterClock:before {
+  opacity: 0;
+  transition-delay: 1s;
+}
+
+.three{
+  margin: 0;
+   width: 100%; height: 100%
+}
